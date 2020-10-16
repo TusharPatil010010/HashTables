@@ -10,7 +10,7 @@ class MyHashMapTest {
 	 */
 	@Test
 	public void whenSentenceAddedToList_ShouldGiveFrequencyOfWords() {
-		String sentence = "to be or not to be";
+		String sentence = "“Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations”";
 		MyHashMap<String, Integer> myHashMap = new MyHashMap<>();
 		String words[] = sentence.toLowerCase().split(" ");
 
@@ -24,9 +24,9 @@ class MyHashMapTest {
 			}
 			myHashMap.add(word, value);
 		}
-		int frequencyTo = myHashMap.get("to");
+		int frequencyTo = myHashMap.get("paranoid");
 		System.out.println(myHashMap);
 		System.out.println("Freq: " + frequencyTo);
-		Assert.assertEquals(2, frequencyTo);
+		Assert.assertEquals(3, frequencyTo);
 	}
 }
