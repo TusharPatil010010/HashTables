@@ -3,31 +3,31 @@ package com.capg.datastructures_hashmap;
 public class MyLinkedList<K> {
 	INode<K> head;
 	INode<K> tail;
-	
+
 	public MyLinkedList() {
 		this.head = null;
 	}
-	
-	public INode<K> getHead(){
+
+	public INode<K> getHead() {
 		return head;
 	}
-	
+
 	public void setHead(INode<K> head) {
 		this.head = head;
 	}
-	
-	public INode<K> getTail(){
+
+	public INode<K> getTail() {
 		return tail;
 	}
-	
+
 	public void setTail(INode<K> tail) {
-		this.tail = tail; 
+		this.tail = tail;
 	}
-	
+
 	public INode<K> searchNode(K key) {
 		INode<K> tempNode = head;
 		while (tempNode != null && tempNode.getNext() != key) {
-			if(tempNode.getKey().equals(key)) {
+			if (tempNode.getKey().equals(key)) {
 				return tempNode;
 			}
 			tempNode = tempNode.getNext();
@@ -36,19 +36,47 @@ public class MyLinkedList<K> {
 	}
 
 	public void append(INode<K> myNode) {
-		if(head == null) {
+		if (head == null) {
 			head = myNode;
 		}
-		if(tail == null) {
+		if (tail == null) {
 			tail = myNode;
-		}
-		else {
+		} else {
 			tail.setNext(myNode);
 			tail = myNode;
 		}
 	}
-	
+
+	public boolean delete(K key) {
+		INode<K> temp = head;
+		INode<K> prev = head;
+		if (head.getKey().equals(key)) {
+			head = head.getNext();
+		} else {
+			while (temp.getNext() != null) {
+				if (temp.getKey().equals(key))
+					break;
+				prev = temp;
+				temp = temp.getNext();
+			}
+			if (tail.getKey().equals(key)) {
+				tail = prev;
+				tail.setNext(null);
+			}
+			prev.setNext(temp.getNext());
+		}
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "My Linked list node{ " + head + "}";
+		StringBuilder string = new StringBuilder();
+		INode<K> temp = head;
+		while (temp.getNext() != null) {
+			string.append(temp).append(" -> ");
+			temp = temp.getNext();
+		}
+		string.append(temp);
+		return string.toString();
 	}
 }
